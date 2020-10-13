@@ -8,13 +8,20 @@ const App = () => {
 			name: form.first_name.value,
 			last_name: form.last_name.value,
 		};
+		const headers = {
+			'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
+			'Access-Control-Allow-Origin': '*',
+			'Referrer-Policy': 'origin-when-cross-origin',
+			'Content-Encoding': 'gzip',
+			'Connection': 'keep-alive',
+		};
 		return axios
-			.post(`https://imin.nonap.co/public/crm/add_crminfo`, {userInfo})
+			.post(`https://imin.nonap.co/public/crm/add_crminfo`, {userInfo}, {headers})
 			.then((res) => {
 				console.log(res);
 				console.log(res.data);
 			})
-			.catch((err) => err);
+			.catch((err) => console.log(err));
 	};
 
 	return (
